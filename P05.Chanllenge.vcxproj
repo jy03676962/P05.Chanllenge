@@ -76,6 +76,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Color.h" />
     <ClInclude Include="config.h">
       <FileType>CppCode</FileType>
     </ClInclude>
@@ -88,6 +89,7 @@
     <ClInclude Include="__vm\.P05.Chanllenge.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Color.cpp" />
     <ClCompile Include="Led.cpp" />
     <ClCompile Include="Tools.cpp" />
   </ItemGroup>

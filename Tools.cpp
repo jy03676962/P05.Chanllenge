@@ -1,4 +1,4 @@
-#include "Tools.h"
+ï»¿#include "Tools.h"
 
 
 namespace Tools{
@@ -79,14 +79,16 @@ namespace Tools{
 		}
 	}
 
-	/**
-	* Á÷Ë®Ð§¹û
-	*/
 	void mode_6_waterFlow(Led *led, Color color, int startBrightness, int highLightNum, int delayTime){
-		led->delayTime = delayTime;
+		if(led->currentMode != 6){
+			led->ledReset();
+			led->currentMode = 6;
+			led->delayTime = delayTime;
+			led->isRunning = true;
+		}
 		//int startBrightness = 10;
-		//int highLightNum = 20;// ±Ø±¸²ÎÊý
-		int curBrightness = 0;// ±Ø±¸²ÎÊý
+		//int highLightNum = 20;// å¿…å¤‡å‚æ•°
+		int curBrightness = 0;// å¿…å¤‡å‚æ•°
 		int addBrightness = (255 - startBrightness) / (highLightNum /2);
 		if(led->binaryValue < highLightNum && led->ledTime % led->delayTime == 0){
 			for (int i = 0; i < led->strip.numPixels(); i++)
@@ -137,5 +139,72 @@ namespace Tools{
 			led->binaryValue = 0;
 		}
 	}
+
+	void mode_34_breath(Led *led, Color color, int delayTime, int startBrightness){
+		if(led->currentMode != 34){
+			led->ledReset();
+			led->currentMode = 34;
+			led->status = 1;
+			led->binaryValue = startBrightness;
+			led->isRunning = true;
+			led->brightnessAdd = (float)((255 - (float)startBrightness) / (float)delayTime * 2);
+			led->delayTime = 1 / led->brightnessAdd;
+			Serial.println(led->delayTime);
+		}
+		if(led->status == 1 && led->ledTime % led->delayTime == 0){
+			for(uint16_t i=0; i<led->strip.numPixels(); i++) {
+				if(color.red == 0 && color.green == 0 && color.blue == 0){
+					led->strip.setPixelColor(i,0,0,0);
+				} else if(color.red == 0 && color.green == 0 && color.blue != 0){
+					led->strip.setPixelColor(i,0,0,led->binaryValue);
+				} else if(color.red == 0 && color.green != 0 && color.blue == 0){
+					led->strip.setPixelColor(i,0,led->binaryValue,0);
+				} else if(color.red == 0 && color.green != 0 && color.blue != 0){
+					led->strip.setPixelColor(i,0,led->binaryValue,led->binaryValue);
+				} else if(color.red != 0 && color.green == 0 && color.blue == 0){
+					led->strip.setPixelColor(i,led->binaryValue,0,0);
+				} else if(color.red != 0 && color.green == 0 && color.blue != 0){
+					led->strip.setPixelColor(i,led->binaryValue,0,led->binaryValue);
+				} else if(color.red != 0 && color.green != 0 && color.blue == 0){
+					led->strip.setPixelColor(i,led->binaryValue,led->binaryValue,0);
+				} else if(color.red != 0 && color.green != 0 && color.blue != 0){
+					led->strip.setPixelColor(i,led->binaryValue,led->binaryValue,led->binaryValue);
+				}
+			}
+			led->strip.show();
+			led->binaryValue++;
+			if(led->binaryValue >= 255){
+				led->status = 0;
+				led->binaryValue = 255;
+			}
+		} else if(led->status == 0 && led->ledTime % led->delayTime == 0){
+			for(uint16_t i=0; i<led->strip.numPixels(); i++) {
+				if(color.red == 0 && color.green == 0 && color.blue == 0){
+					led->strip.setPixelColor(i,0,0,0);
+				} else if(color.red == 0 && color.green == 0 && color.blue != 0){
+					led->strip.setPixelColor(i,0,0,led->binaryValue);
+				} else if(color.red == 0 && color.green != 0 && color.blue == 0){
+					led->strip.setPixelColor(i,0,led->binaryValue,0);
+				} else if(color.red == 0 && color.green != 0 && color.blue != 0){
+					led->strip.setPixelColor(i,0,led->binaryValue,led->binaryValue);
+				} else if(color.red != 0 && color.green == 0 && color.blue == 0){
+					led->strip.setPixelColor(i,led->binaryValue,0,0);
+				} else if(color.red != 0 && color.green == 0 && color.blue != 0){
+					led->strip.setPixelColor(i,led->binaryValue,0,led->binaryValue);
+				} else if(color.red != 0 && color.green != 0 && color.blue == 0){
+					led->strip.setPixelColor(i,led->binaryValue,led->binaryValue,0);
+				} else if(color.red != 0 && color.green != 0 && color.blue != 0){
+					led->strip.setPixelColor(i,led->binaryValue,led->binaryValue,led->binaryValue);
+				}
+			}
+			led->strip.show();
+			led->binaryValue--;
+			if(led->binaryValue <= 0){
+				led->status = 1;	
+				led->binaryValue = 0;
+			}
+		}
+	}
+
 
 }

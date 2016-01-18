@@ -15,6 +15,7 @@ public:
 	long ledTime;//led已经开启的时间
 	long delayTime;//间隔时间
 	int binaryValue;//遍历值（相当于for中的i）
+	float brightnessAdd;//亮度增加数值
 
 	String cell_num; // 所属格子编号
 	char wall_num;// 所属墙面编号
@@ -24,13 +25,15 @@ public:
 	int newMode;//从PC读取出的即将变为的新模式
 
 	/**
-		@params
-			_cellNum 格子编号
-			_wallNum 墙体编号
-			_ledType Led类型，按键Led or 墙体照明Led
-			_ledNum Led编号
+	@params
+		_cellNum 格子编号
+		_wallNum 墙体编号
+		_ledType Led类型，按键Led or 墙体照明Led
+		_ledNum Led编号
 	*/
 	void ledSetup(String _cellNum, char _wallNum, int _ledType, int _ledNum);
+	//清除Led数据
+	void ledReset();
 	Led(int Length,int pin);
 	~Led(void);
 };
