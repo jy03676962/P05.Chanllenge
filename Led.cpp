@@ -20,6 +20,7 @@ Led::~Led(void)
 
 void Led::ledSetup(String _cellNum,char _wallNum,int _ledType,int _ledNum){
 	memset(curLightStatus,0,255);
+	memset(curLightColor,0,255);
 	loopNum = 0;
 	status = 0;
 	ledTime = 0;
@@ -27,6 +28,9 @@ void Led::ledSetup(String _cellNum,char _wallNum,int _ledType,int _ledNum){
 	binaryValue = 0;
 	isRunning = false;
 	brightnessAdd = 0.0f;
+	highLightNum = 0;
+	highLightLoc = 0;
+
 	strip.begin();
 	for (int i = 0; i < length; i++)
 	{
@@ -43,13 +47,18 @@ void Led::ledSetup(String _cellNum,char _wallNum,int _ledType,int _ledNum){
 
 void Led::ledReset(){
 	memset(curLightStatus,0,255);
+	memset(curLightColor,0,255);
 	loopNum = 0;
 	status = 0;
 	ledTime = 0;
 	delayTime = 50;
 	binaryValue = 0;
 	brightnessAdd = 0.0f;
+	highLightNum = 0;
+	highLightLoc = 0;
 	isRunning = false;
+
+
 	strip.begin();
 	for (int i = 0; i < length; i++)
 	{

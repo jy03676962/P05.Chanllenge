@@ -12,10 +12,13 @@ public:
 	int status;//灯条当前状态，全亮or全暗orXXX
 	bool isRunning;//正在跑效果
 	int curLightStatus[255];//每个灯的状态
+	uint32_t curLightColor[255];//每个灯的颜色
 	long ledTime;//led已经开启的时间
 	long delayTime;//间隔时间
 	int binaryValue;//遍历值（相当于for中的i）
 	float brightnessAdd;//亮度增加数值
+	int highLightNum;//高光灯珠数量
+	int highLightLoc;//高光灯珠的位置
 
 	String cell_num; // 所属格子编号
 	char wall_num;// 所属墙面编号

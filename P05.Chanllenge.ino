@@ -83,7 +83,10 @@ void jsonParseLaser_Control(char *msg){
 bool isUse = false;
 
 void loop() {
-	mode_3_rainbowColor(&l1,20);
+
+	//mode_5_starFlow(&l1,5,50);
+	mode_6_highLightFlow(&l1,Color(255,0,0),10,20);
+	//mode_3_rainbowColor(&l1,1);
 	//mode_6_waterFlow(&l1,Color(0,255,255),10,20,20);
 	char *a = clientConnect();
 	if(*a == '1'){
@@ -92,12 +95,15 @@ void loop() {
 		isUse = false;
 	}
 	if(isUse){
-		mode_34_breath(&l2,Color(1,0,0),800,0);
-		//mode_6_waterFlow(&l2,Color(255,255,255),10,20,20);
-		//ledEffect_buttonIsUseful(&l2,Color(0,255,255),50);
+		//mode_3_rainbowColor(&l2,1);
+		//mode_47_rainbowcycle(&l2,1);
+		//mode_5_starFlow(&l2,10,50);*
+		//mode_34_breath(&l2,Color(1,0,0),800,0);
+		//mode_6_waterFlow(&l2,Color(0,0,255),10,20,20);
+		mode_8_buttonIsUseful(&l2,Color(0,255,255),50);
 	} else {
-		mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);
-		//ledEffect_pressButton(&l2,Color(0,255,255),50);
+		//mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);
+		mode_13_pressButton(&l2,Color(0,255,255),50);
 	}
 	l1.ledTime += MILLISECOND;
 	l2.ledTime += MILLISECOND;
