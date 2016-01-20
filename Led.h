@@ -29,10 +29,10 @@ public:
 
 	/**
 	@params
-		_cellNum 格子编号
-		_wallNum 墙体编号
-		_ledType Led类型，按键Led or 墙体照明Led
-		_ledNum Led编号
+	_cellNum 格子编号
+	_wallNum 墙体编号
+	_ledType Led类型，按键Led or 墙体照明Led
+	_ledNum Led编号
 	*/
 	void ledSetup(String _cellNum, char _wallNum, int _ledType, int _ledNum);
 	//清除Led数据

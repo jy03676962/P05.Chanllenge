@@ -14,10 +14,14 @@ namespace Tools {
 	void mode_6_waterFlow(Led *led, Color color, int startBrightness,int highLightNum,int delayTime);
 	//触摸按键灯效
 	void mode_13_pressButton(Led *led, Color color, int delayTime);
+	//暗点旋转,darkNum 为暗点数量
+	void mode_24_rotate(Led *led, Color color, int darkNum, int delayTime);
 	//呼吸灯效果
 	void mode_34_breath(Led *led, Color color, int delayTime, int startBrightness);
 	//彩虹流动
-	void mode_47_rainbowcycle(Led *led, int delayTime);
+	void mode_47_rainbowCycle(Led *led, int delayTime);
+
+	void mode_50_rainbowRotate(Led *led, Color color, int darkNum, int delayTime);
 
 	//void mode_6_highLightFlow(Led *led, Color color, int _highLightNum, int delayTime);
 };
