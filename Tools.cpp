@@ -242,8 +242,6 @@ namespace Tools{
 			led->delayTime = delayTime;
 			led->isRunning = true;
 			led->binaryValue = 0;
-			Serial.println("setup");
-			Serial.println(led->status);
 		} else if(led->currentMode == 8){
 			led->currentMode = 13;
 			led->delayTime = delayTime;
@@ -308,7 +306,7 @@ namespace Tools{
 		if(led->currentMode != 34){
 			led->ledReset();
 			led->currentMode = 34;
-			led->status = 1;
+			led->status = 0;
 			led->binaryValue = startBrightness;
 			led->isRunning = true;
 			led->brightnessAdd = (float)((255 - (float)startBrightness) / (float)delayTime * 2);
@@ -334,7 +332,7 @@ namespace Tools{
 			colorNum = led->strip.Color(led->binaryValue,led->binaryValue,led->binaryValue);
 		}
 		//----------------logic
-		if(led->status == 1 && led->ledTime % led->delayTime == 0){
+		if(led->status == 0 && led->ledTime % led->delayTime == 0){
 			for(uint16_t i=0; i<led->strip.numPixels(); i++) {
 				led->strip.setPixelColor(i,colorNum);
 				led->curLightColor[i] = colorNum;
@@ -343,10 +341,10 @@ namespace Tools{
 			led->strip.show();
 			led->binaryValue++;
 			if(led->binaryValue >= 255){
-				led->status = 0;
+				led->status = 1;
 				led->binaryValue = 255;
 			}
-		} else if(led->status == 0 && led->ledTime % led->delayTime == 0){
+		} else if(led->status == 1 && led->ledTime % led->delayTime == 0){
 			for(uint16_t i=0; i<led->strip.numPixels(); i++) {
 				led->strip.setPixelColor(i,colorNum);
 				led->curLightColor[i] = colorNum;
@@ -355,7 +353,7 @@ namespace Tools{
 			led->strip.show();
 			led->binaryValue--;
 			if(led->binaryValue <= 0){
-				led->status = 1;	
+				led->status = 0;	
 				led->binaryValue = 0;
 			}
 		}
@@ -388,7 +386,7 @@ namespace Tools{
 			led->ledReset();
 			led->currentMode = 50;
 			led->delayTime = delayTime;
-			led->status == 1;
+			led->status = 1;
 			led->isRunning = true;
 		} 
 		int space = led->strip.numPixels() / darkNum;
@@ -414,6 +412,133 @@ namespace Tools{
 			led->loopNum++;
 		} else if(led->loopNum == 256 * 5){
 			led->loopNum = 0;
+		}
+	}
+
+	void mode_56_lightAndoff(Led *led, Color color, int delayTime){
+		if(led->currentMode != 56){
+			led->ledReset();
+			led->currentMode = 56;
+			led->delayTime = delayTime;
+			led->status = 1;
+			led->isRunning = true;
+		} 
+		int red = color.red -led->binaryValue;
+		if(red <= 0){
+			red = 0;
+		}
+		int green = color.green -led->binaryValue;
+		if(green <= 0){
+			green = 0;
+		}
+		int blue = color.blue -led->binaryValue;
+		if(blue <= 0){
+			blue = 0;
+		}
+		uint32_t colorNum = led->strip.Color(red,green,blue);
+		for (int i = 0; i < led->strip.numPixels(); i++)
+		{
+			led->strip.setPixelColor(i,colorNum);
+			led->curLightColor[i] = colorNum;
+			led->curLightStatus[i] = 1;
+		}
+		led->strip.show();
+		if(0 == red && 0 == green && 0 == blue){
+			return;
+		}
+		if(led->ledTime % led->delayTime == 0){
+			led->binaryValue++;
+		}
+	}
+
+	void mode_71_slowLightOn(Led *led, Color color, int delayTime){
+		if(led->currentMode != 71){
+			led->ledReset();
+			led->currentMode = 71;
+			led->brightnessAdd = 5;
+			led->delayTime = delayTime;
+			led->status = 1;
+			led->isRunning = true;
+		} 
+		int red = led->binaryValue;
+		if(color.red == 0){
+			red = 0;
+		}
+		int green = led->binaryValue;
+		if(color.green == 0){
+			green = 0;
+		}
+		int blue = led->binaryValue;
+		if(color.blue == 0){
+			blue = 0;
+		}
+		uint32_t colorNum = led->strip.Color(red,green,blue);
+		for (int i = 0; i < led->strip.numPixels(); i++)
+		{
+			led->strip.setPixelColor(i,colorNum);
+			led->curLightColor[i] = colorNum;
+			led->curLightStatus[i] = 1;
+		}
+		led->strip.show();
+		if(led->binaryValue >= 255){
+			led->binaryValue = 255;
+			Serial.println("OK");
+			return;
+		}
+		if(led->ledTime % led->delayTime == 0){
+			led->binaryValue+=led->brightnessAdd;
+		}
+	}
+
+	void mode_62_divergent(Led *led, Color color, int delayTime){
+		if(led->currentMode != 62){
+			led->ledReset();
+			led->currentMode = 62;
+			led->delayTime = delayTime;
+			led->status = 0;
+			led->isRunning = true;
+			if(led->length % 2 == 0){
+				led->loopNum = led->length / 2;
+			} else {
+				led->loopNum = (led->length + 1) / 2;
+			}
+		}
+		uint32_t colorNum = getColor(color,led);
+		int loc1 = led->length / 2 - 1 - led->binaryValue;
+		if(loc1 < 0 ){
+			loc1 = 0;
+		}
+		int loc2 = led->length / 2 + led->binaryValue;
+		if(led->status == 0 && led->ledTime % led->delayTime == 0){
+			led->curLightColor[loc1] = colorNum;
+			led->curLightStatus[loc1] = 1;
+			led->curLightColor[loc2] = colorNum;
+			led->curLightStatus[loc2] = 1;
+			for (int i = 0; i < led->length; i++)
+			{
+				led->strip.setPixelColor(i,led->curLightColor[i]);
+			}
+			led->strip.show();
+			led->binaryValue++;
+			if(led->binaryValue >= led->loopNum){
+				led->status = 1;
+				led->binaryValue--;
+			}
+		} else if(led->status == 1 && led->ledTime % led->delayTime == 0){
+			led->curLightColor[loc1] = 0;
+			led->curLightStatus[loc1] = 0;
+			led->curLightColor[loc2] = 0;
+			led->curLightStatus[loc2] = 0;
+			for (int i = 0; i < led->length; i++)
+			{
+				led->strip.setPixelColor(i,led->curLightColor[i]);
+			}
+			led->strip.show();
+			led->binaryValue--;
+			if(led->binaryValue < 0){
+				led->status = 0;	
+				led->binaryValue++;
+			}
 		}
 	}
 }

@@ -20,8 +20,14 @@ namespace Tools {
 	void mode_34_breath(Led *led, Color color, int delayTime, int startBrightness);
 	//彩虹流动
 	void mode_47_rainbowCycle(Led *led, int delayTime);
-
+	//彩虹暗点旋转
 	void mode_50_rainbowRotate(Led *led, Color color, int darkNum, int delayTime);
+	//亮起渐灭
+	void mode_56_lightAndoff(Led *led, Color color, int delayTime);
+	//渐亮
+	void mode_71_slowLightOn(Led *led, Color color, int delayTime);
+	//光点从中心发散
+	void mode_62_divergent(Led *led, Color color, int delayTime);
 
 	//void mode_6_highLightFlow(Led *led, Color color, int _highLightNum, int delayTime);
 };
