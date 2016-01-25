@@ -7,7 +7,11 @@
 #include <SoftwareSerial.h>
 
 //------------------------------------------NET-----------------------------------
+#if defined(WIZ550io_WITH_MACADDRESS) // Use assigned MAC address of WIZ550io
+;
+#else
 byte myMac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+#endif 
 IPAddress myIp (172, 16, 10, 180);
 IPAddress serverIp (172, 16, 10, 62);
 int myPort = 8989;
@@ -19,10 +23,15 @@ using namespace Tools;
 Led l1(LED_LENG6,PIN6);
 Led l2(LED_LENG7,PIN7);
 void setup() {
-	Serial.begin(9600);
+#if defined(WIZ550io_WITH_MACADDRESS)
+	Ethernet.begin(myIp);
+#else
 	Ethernet.begin(myMac, myIp);
+#endif
+	Serial.begin(9600);
 	l1.ledSetup("1-1",'n',1,1);
 	l2.ledSetup("1-1",'n',1,2);
+	delay(MILLISECOND);
 }
 int stringPos = 0;
 bool startRead = false;
@@ -91,13 +100,13 @@ void loop() {
 	//mode_50_rainbowRotate(&l1,Color(0,255,255),4,50);
 	//mode_56_lightAndoff(&l1,Color(0,255,255),1);
 	//mode_71_slowLightOn(&l1,Color(0,255,255),10);
-
 	char *a = clientConnect();
-	if(*a == '1'){
-		isUse = true;
-	} else if(*a == '0') {
-		isUse = false;
-	}
+	//if(*a == '1'){
+	//	isUse = true;
+	//} else if(*a == '0') {
+	//	isUse = false;
+	//}
+	//mode_5_starFlow(&l1,7,10);
 	if(isUse){
 		mode_24_rotate(&l2,Color(0,255,255),2,20);
 		//mode_3_rainbowColor(&l2,1);
@@ -109,7 +118,7 @@ void loop() {
 		//mode_8_buttonIsUseful(&l2,Color(0,255,255),50);
 	} else {
 		//mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);
-		mode_62_divergent(&l2,Color(0,255,255),10);
+		mode_5_starFlow(&l2,7,10);
 		//mode_13_pressButton(&l2,Color(0,255,255),10);
 	}
 	l1.ledTime += MILLISECOND;
@@ -129,7 +138,7 @@ char* clientConnect(){
 						 }");	
 			Serial.println("Connected success!");
 		} else {
-			Serial.println("Oh,fuck!connected failed!");
+			Serial.println("connected failed!");
 		}
 	} else {
 		char *c = readPage();

@@ -26,7 +26,7 @@ namespace Tools {
 	void mode_56_lightAndoff(Led *led, Color color, int delayTime);
 	//渐亮
 	void mode_71_slowLightOn(Led *led, Color color, int delayTime);
-	//光点从中心发散
+	//光点从中心发散至两边再收回
 	void mode_62_divergent(Led *led, Color color, int delayTime);
 
 	//void mode_6_highLightFlow(Led *led, Color color, int _highLightNum, int delayTime);
