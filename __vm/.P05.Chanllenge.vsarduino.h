@@ -61,6 +61,10 @@ extern "C" void __cxa_pure_virtual() {;}
 #define portInputRegister(P)
 #define portModeRegister(P)
 #include <P05.Chanllenge.ino>
+#include <Cmd.cpp>
+#include <Cmd.h>
+#include <CmdGameMode.cpp>
+#include <CmdGameMode.h>
 #include <Color.cpp>
 #include <Color.h>
 #include <Led.cpp>

@@ -6,4 +6,8 @@
 #define PIN7 7
 #define MILLISECOND 1
 
+
+#define MODE_CHANGE "mode_change"
+#define STATUS_CHANGE "status_change"
+
 #endif 

@@ -541,4 +541,24 @@ namespace Tools{
 			}
 		}
 	}
+
+
+	void parseServerCmd(char *msg, Cmd *cmd){
+		aJsonObject *root = aJson.parse(msg);
+		if(root != NULL){
+			aJsonObject *cmdType = aJson.getObjectItem(root,"cmd");
+			cmd->setCmd(cmdType->valuestring,msg);
+			Serial.println(cmdType->valuestring);
+			cmd->isDeal = false;
+			cmd->isNew = true;
+		}
+	}
+
+	void parseMode_ChangeCmd(char *msg, CmdGameMode *cmd){
+		aJsonObject *root = aJson.parse(msg);
+		if(root != NULL){
+			aJsonObject *mode = aJson.getObjectItem(root,"mode");
+			cmd->gameMode = mode->valuestring[0];
+		}
+	}
 }

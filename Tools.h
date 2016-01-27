@@ -2,8 +2,12 @@
 #ifndef TOOLS_H
 #include "Led.h"
 #include "Color.h"
+#include "Cmd.h"
+#include "CmdGameMode.h"
+#include <aJSON.h>
 
 namespace Tools {
+	//------------------------------------LED-------------------------------------
 	//模式3 (6米灯带效果)
 	void mode_3_rainbowColor(Led *led, int delayTime);
 	//模式5 (流星效果)
@@ -30,5 +34,10 @@ namespace Tools {
 	void mode_62_divergent(Led *led, Color color, int delayTime);
 
 	//void mode_6_highLightFlow(Led *led, Color color, int _highLightNum, int delayTime);
+
+	//------------------------------------cmd parse-------------------------------------
+	void parseServerCmd(char *msg, Cmd *cmd);
+
+	void parseMode_ChangeCmd(char *msg, CmdGameMode *cmd);
 };
 #endif 

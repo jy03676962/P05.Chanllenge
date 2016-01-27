@@ -1,7 +1,6 @@
 #include "Tools.h"
 #include <Adafruit_NeoPixel.h>
 #include <aJSON.h>
-#include <SPI.h>
 #include <Ethernet.h>
 #include <SPI.h>
 #include <SoftwareSerial.h>
@@ -22,6 +21,7 @@ using namespace Tools;
 //----------------------------------LED-----------------------------------------
 Led l1(LED_LENG6,PIN6);
 Led l2(LED_LENG7,PIN7);
+Cmd cmd;
 void setup() {
 #if defined(WIZ550io_WITH_MACADDRESS)
 	Ethernet.begin(myIp);
@@ -52,8 +52,8 @@ char * readPage(){
 					//got what we need here! We can disconnect now
 					startRead = false;
 					stringPos = 0;
-					client.stop();
 					client.flush();
+					parseServerCmd(inString,&cmd);
 					return inString;
 				}
 			}
@@ -91,51 +91,17 @@ void jsonParseLaser_Control(char *msg){
 
 bool isUse = false;
 
-void loop() {
-	//mode_24_rotate(&l1,Color(0,255,255),2,200);
-	//mode_5_starFlow(&l1,5,50);
-	//mode_6_highLightFlow(&l1,Color(255,0,0),10,20);
-	//mode_3_rainbowColor(&l1,1);
-	//mode_6_waterFlow(&l1,Color(0,255,255),10,20,20);
-	//mode_50_rainbowRotate(&l1,Color(0,255,255),4,50);
-	//mode_56_lightAndoff(&l1,Color(0,255,255),1);
-	//mode_71_slowLightOn(&l1,Color(0,255,255),10);
-	char *a = clientConnect();
-	//if(*a == '1'){
-	//	isUse = true;
-	//} else if(*a == '0') {
-	//	isUse = false;
-	//}
-	//mode_5_starFlow(&l1,7,10);
-	if(isUse){
-		mode_24_rotate(&l2,Color(0,255,255),2,20);
-		//mode_3_rainbowColor(&l2,1);
-		//mode_71_slowLightOn(&l2,Color(0,255,255),2);
-		//mode_47_rainbowCycle(&l2,1);
-		//mode_5_starFlow(&l2,10,50);*
-		//mode_34_breath(&l2,Color(1,0,0),800,0);
-		//mode_6_waterFlow(&l2,Color(0,0,255),10,20,20);
-		//mode_8_buttonIsUseful(&l2,Color(0,255,255),50);
-	} else {
-		//mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);
-		mode_5_starFlow(&l2,7,10);
-		//mode_13_pressButton(&l2,Color(0,255,255),10);
-	}
-	l1.ledTime += MILLISECOND;
-	l2.ledTime += MILLISECOND;
-	delay(MILLISECOND);
-} 
-
 char* clientConnect(){
 	if(!client.connected()) {
+		client.stop();
 		if(client.connect(serverIp,myPort)){
 			client.print("Hello,server,I'm comming!");	
-			client.print("{\
-						 \"cmd\": \"alarm_info_upload\",\
-						 \"cell_num\": \"1-1\",\
-						 \"wall_num\": \"n\",\
-						 \"alarm_status\": \"off\"\
-						 }");	
+			//client.print("{\
+			//			 \"cmd\": \"alarm_info_upload\",\
+			//			 \"cell_num\": \"1-1\",\
+			//			 \"wall_num\": \"n\",\
+			//			 \"alarm_status\": \"off\"\
+			//			 }");	
 			Serial.println("Connected success!");
 		} else {
 			Serial.println("connected failed!");
@@ -146,3 +112,54 @@ char* clientConnect(){
 		return c;
 	}
 }
+
+CmdGameMode cmdGameMode;
+void loop() {
+	long startTime = millis();
+	//mode_24_rotate(&l1,Color(0,255,255),2,200);
+	//mode_5_starFlow(&l1,5,50);
+	//mode_6_highLightFlow(&l1,Color(255,0,0),10,20);
+	//mode_6_waterFlow(&l1,Color(0,255,255),10,20,20);
+	//mode_50_rainbowRotate(&l1,Color(0,255,255),4,50);
+	//mode_56_lightAndoff(&l1,Color(0,255,255),1);
+	//mode_71_slowLightOn(&l1,Color(0,255,255),10);
+	char *a = clientConnect();
+	if(*a == '1'){
+		isUse = true;
+	} else if(*a == '0') {
+		isUse = false;
+	}
+	if(!cmd.isDeal && cmd.isNew){
+		cmd.isDeal = true;
+		cmd.isNew = false;
+		if(strcmp(cmd.cmdType,MODE_CHANGE) == 0){
+			parseMode_ChangeCmd(cmd.cmdContent, &cmdGameMode);
+		} else if(strcmp(cmd.cmdType,STATUS_CHANGE) == 0){
+
+		}
+	}
+	if(cmdGameMode.gameMode == '1'){
+		mode_3_rainbowColor(&l1,1);
+	} else if(cmdGameMode.gameMode == '2'){
+		mode_6_waterFlow(&l1,Color(0,255,255),10,20,20);
+	}
+	//mode_5_starFlow(&l1,7,10);
+	if(isUse){
+		//mode_24_rotate(&l2,Color(0,255,255),2,20);
+		//mode_3_rainbowColor(&l2,1);
+		//mode_71_slowLightOn(&l2,Color(0,255,255),2);
+		//mode_47_rainbowCycle(&l2,1);
+		//mode_5_starFlow(&l2,10,50);*
+		//mode_34_breath(&l2,Color(1,0,0),800,0);
+		mode_6_waterFlow(&l2,Color(0,0,255),10,20,20);
+		//mode_8_buttonIsUseful(&l2,Color(0,255,255),50);
+	} else {
+		//mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);
+		mode_5_starFlow(&l2,7,10);
+		//mode_13_pressButton(&l2,Color(0,255,255),10);
+	}
+	l1.ledTime += MILLISECOND;
+	l2.ledTime += MILLISECOND;
+	long stop = millis();
+	delay(MILLISECOND);
+} 
