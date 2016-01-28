@@ -65,6 +65,10 @@ extern "C" void __cxa_pure_virtual() {;}
 #include <Cmd.h>
 #include <CmdGameMode.cpp>
 #include <CmdGameMode.h>
+#include <CmdGameStatus.cpp>
+#include <CmdGameStatus.h>
+#include <CmdLedCtrl.cpp>
+#include <CmdLedCtrl.h>
 #include <Color.cpp>
 #include <Color.h>
 #include <Led.cpp>

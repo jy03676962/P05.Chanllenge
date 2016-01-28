@@ -124,11 +124,11 @@ void loop() {
 	//mode_56_lightAndoff(&l1,Color(0,255,255),1);
 	//mode_71_slowLightOn(&l1,Color(0,255,255),10);
 	char *a = clientConnect();
-	if(*a == '1'){
-		isUse = true;
-	} else if(*a == '0') {
-		isUse = false;
-	}
+	//if(*a == '1'){
+	//	isUse = true;
+	//} else if(*a == '0') {
+	//	isUse = false;
+	//}
 	if(!cmd.isDeal && cmd.isNew){
 		cmd.isDeal = true;
 		cmd.isNew = false;
@@ -151,7 +151,7 @@ void loop() {
 		//mode_47_rainbowCycle(&l2,1);
 		//mode_5_starFlow(&l2,10,50);*
 		//mode_34_breath(&l2,Color(1,0,0),800,0);
-		mode_6_waterFlow(&l2,Color(0,0,255),10,20,20);
+		//mode_6_waterFlow(&l2,Color(0,0,255),10,20,20);
 		//mode_8_buttonIsUseful(&l2,Color(0,255,255),50);
 	} else {
 		//mode_6_waterFlow(&l2,Color(0,255,255),10,20,20);

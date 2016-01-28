@@ -1,5 +1,10 @@
 #include "Led.h"
 
+Led::Led(void)
+{
+
+}
+
 Led::Led(int _length,int _pin)
 {
 	strip = Adafruit_NeoPixel(_length, _pin, NEO_GRB + NEO_KHZ800);

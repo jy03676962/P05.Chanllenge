@@ -1,9 +1,13 @@
 #pragma once
 #ifndef TOOLS_H
+#define TOOLS_H
+
 #include "Led.h"
 #include "Color.h"
-#include "Cmd.h"
 #include "CmdGameMode.h"
+#include "CmdGameStatus.h"
+#include "CmdLedCtrl.h"
+
 #include <aJSON.h>
 
 namespace Tools {
@@ -35,9 +39,34 @@ namespace Tools {
 
 	//void mode_6_highLightFlow(Led *led, Color color, int _highLightNum, int delayTime);
 
-	//------------------------------------cmd parse-------------------------------------
+	//------------------------------------Server Cmd parse-------------------------------------
 	void parseServerCmd(char *msg, Cmd *cmd);
 
 	void parseMode_ChangeCmd(char *msg, CmdGameMode *cmd);
+
+	void parseStatus_ChangeCmd(char *msg, CmdGameStatus *cmd);
+
+	void parseLed_CtrlCmd();
+
+	void parseKey_CtrlCmd();
+
+	void parseLaser_CtrlCmd();
+
+	void parseLaser_Rev_CtrlCmd();
+
+	void parseMp3_CtrlCmd();
+
+	void parseLight_CtrlCmd();
+
+	//------------------------------Arduino status update---------------------------
+	bool arduinoStatusUpdate();
+	//------------------------------about Server function---------------------------
+	bool serverCmdDeal();
+	bool modeChangeCmdDeal();
+	//--------------------------------Info upload-----------------------------------
+	bool buttonInfoUpload();
+	bool laserRevInfoUpload();
+	bool deviceInfoUpload();
+
 };
 #endif 

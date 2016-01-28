@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CMD_H
+#define CMD_H
+
 class Cmd
 {
 public:
@@ -12,4 +15,4 @@ public:
 	Cmd();
 	~Cmd(void);
 };
-
+#endif 

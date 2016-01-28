@@ -1,4 +1,7 @@
 #pragma once
+#ifndef CMDGAMEMODE_H
+#define CMDGAMEMODE_H
+
 #include "cmd.h"
 class CmdGameMode : public Cmd
 {
@@ -7,4 +10,4 @@ public:
 	CmdGameMode(void);
 	~CmdGameMode(void);
 };
-
+#endif 

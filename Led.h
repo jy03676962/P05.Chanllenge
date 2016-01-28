@@ -1,4 +1,7 @@
 #pragma once
+#ifndef LED_H
+#define LED_H
+
 #include <Adafruit_NeoPixel.h>
 #include "config.h"
 
@@ -37,7 +40,8 @@ public:
 	void ledSetup(String _cellNum, char _wallNum, int _ledType, int _ledNum);
 	//Çå³ýLedÊý¾Ý
 	void ledReset();
+	Led();
 	Led(int Length,int pin);
 	~Led(void);
 };
-
+#endif 

@@ -1,6 +1,5 @@
 ﻿#include "Tools.h"
 
-
 namespace Tools{
 
 	uint32_t Wheel(byte WheelPos, Led *led) {
@@ -544,13 +543,16 @@ namespace Tools{
 
 
 	void parseServerCmd(char *msg, Cmd *cmd){
+		Serial.println(msg);
 		aJsonObject *root = aJson.parse(msg);
 		if(root != NULL){
 			aJsonObject *cmdType = aJson.getObjectItem(root,"cmd");
 			cmd->setCmd(cmdType->valuestring,msg);
-			Serial.println(cmdType->valuestring);
 			cmd->isDeal = false;
 			cmd->isNew = true;
+			Serial.println("root is null");
+		} else {
+			Serial.println("root is null");
 		}
 	}
 
@@ -559,6 +561,7 @@ namespace Tools{
 		if(root != NULL){
 			aJsonObject *mode = aJson.getObjectItem(root,"mode");
 			cmd->gameMode = mode->valuestring[0];
+			Serial.println(cmd->gameMode);
 		}
 	}
 }
