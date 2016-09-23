@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{40F674AB-5139-4795-81A8-461478802CC9}</ProjectGuid>
+    <RootNamespace>P05Chanllenge</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>D:\Arduino-1.0.6\hardware\arduino\cores\arduino;D:\Arduino-1.0.6\hardware\arduino\variants\mega;E:\Project_Workspace\P05.Golden Rush\src;D:\Arduino-1.0.6\libraries\Adafruit_NeoPixel;D:\Arduino-1.0.6\libraries\Adafruit_NeoPixel\utility;D:\Arduino-1.0.6\libraries\aJSON;D:\Arduino-1.0.6\libraries\aJSON\utility;D:\Arduino-1.0.6\libraries\Ethernet;D:\Arduino-1.0.6\libraries\Ethernet\utility;D:\Arduino-1.0.6\libraries\SoftwareSerial;D:\Arduino-1.0.6\libraries\SoftwareSerial\utility;D:\Arduino-1.0.6\libraries\SPI;D:\Arduino-1.0.6\libraries\SPI\utility;D:\Arduino-1.0.6\libraries;D:\Arduino-1.0.6\hardware\arduino\libraries;D:\visual studio 2012\Common7\IDE\Extensions\cxqari4v.fcw\Micro Platforms\default\debuggers;D:\Arduino-1.0.6\hardware\libraries;d:\arduino-1.0.6\hardware\tools\avr\avr\include\;d:\arduino-1.0.6\hardware\tools\avr\avr\include\avr\;d:\arduino-1.0.6\hardware\tools\avr\avr\;d:\arduino-1.0.6\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>E:\Project_Workspace\P05.Golden Rush\src\__vm\.src.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <PreprocessorDefinitions>__AVR_ATmega2560__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;F_CPU=16000000L;__cplusplus=201103L;GCC_VERSION=40302;ARDUINO_ARCH_AVR;ARDUINO_AVR_MEGA2560;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino\cores\arduino;C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino\cores\arduino\avr-libc;C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino\variants\mega;D:\Project_Workspace\P05.Chanllenge.A\Code\Micro_Computer\A\src;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\Adafruit_NeoPixel;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\Adafruit_NeoPixel\utility;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\aJSON;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\aJSON\utility;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\Ethernet;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\Ethernet\utility;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\SoftwareSerial;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\SoftwareSerial\utility;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\SPI;C:\Users\pc\Desktop\Arduino-1.0.6\libraries\SPI\utility;C:\Users\pc\Desktop\Arduino-1.0.6\libraries;C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino\libraries;C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\ti0bs03y.v40\Micro Platforms\default\debuggers;E:\VS-Workspace\libraries;c:\users\pc\desktop\arduino-1.0.6\hardware\tools\avr\avr\include\;c:\users\pc\desktop\arduino-1.0.6\hardware\tools\avr\avr\include\avr\;c:\users\pc\desktop\arduino-1.0.6\hardware\tools\avr\avr\;c:\users\pc\desktop\arduino-1.0.6\hardware\tools\avr\lib\gcc\avr\4.3.2\include\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ForcedIncludeFiles>D:\Project_Workspace\P05.Chanllenge.A\Code\Micro_Computer\A\src\__vm\.src.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>__AVR_ATmega2560__;ARDUINO=106;ARDUINO_MAIN;__AVR__;__avr__;F_CPU=16000000L;__cplusplus=201103L;GCC_VERSION=40302;ARDUINO_ARCH_AVR;ARDUINO_AVR_MEGA2560;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
+    <None Include="P05.Chanllenge.ino">
+      <FileType>CppCode</FileType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Cmd.h" />
+    <ClInclude Include="CmdBtnCtrl.h" />
+    <ClInclude Include="CmdGameMode.h" />
+    <ClInclude Include="CmdInitScore.h" />
+    <ClInclude Include="CmdLaserCtrl.h" />
+    <ClInclude Include="CmdLedCtrl.h" />
+    <ClInclude Include="CmdLightCtrl.h" />
+    <ClInclude Include="CmdMp3Ctrl.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="config.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="LaserParseContent.h" />
+    <ClInclude Include="Led.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="LedParseContent.h" />
+    <ClInclude Include="ScoreParseContent.h" />
+    <ClInclude Include="Tools.h">
+      <FileType>CppCode</FileType>
+    </ClInclude>
+    <ClInclude Include="__vm\.src.vsarduino.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Cmd.cpp" />
+    <ClCompile Include="CmdBtnCtrl.cpp" />
+    <ClCompile Include="CmdGameMode.cpp" />
+    <ClCompile Include="CmdInitScore.cpp" />
+    <ClCompile Include="CmdLaserCtrl.cpp" />
+    <ClCompile Include="CmdLedCtrl.cpp" />
+    <ClCompile Include="CmdLightCtrl.cpp" />
+    <ClCompile Include="CmdMp3Ctrl.cpp" />
+    <ClCompile Include="Color.cpp" />
+    <ClCompile Include="LaserParseContent.cpp" />
+    <ClCompile Include="Led.cpp" />
+    <ClCompile Include="LedParseContent.cpp" />
+    <ClCompile Include="ScoreParseContent.cpp" />
+    <ClCompile Include="Tools.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties arduino.upload.port="COM113" arduino.board.name="mega2560" arduino.board.desc="Arduino Mega 2560 or Mega ADK" arduino.board.property_bag="name=Arduino Mega 2560 or Mega ADK&#xD;&#xA;upload.protocol=wiring&#xD;&#xA;upload.maximum_size=258048&#xD;&#xA;upload.speed=115200&#xD;&#xA;bootloader.low_fuses=0xFF&#xD;&#xA;bootloader.high_fuses=0xD8&#xD;&#xA;bootloader.extended_fuses=0xFD&#xD;&#xA;bootloader.path=stk500v2&#xD;&#xA;bootloader.file=stk500boot_v2_mega2560.hex&#xD;&#xA;bootloader.unlock_bits=0x3F&#xD;&#xA;bootloader.lock_bits=0x0F&#xD;&#xA;build.mcu=atmega2560&#xD;&#xA;build.f_cpu=16000000L&#xD;&#xA;build.core=arduino&#xD;&#xA;build.variant=mega&#xD;&#xA;runtime.ide.path=C:\Users\pc\Desktop\Arduino-1.0.6&#xD;&#xA;build.system.path=C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino\system&#xD;&#xA;runtime.ide.version=106&#xD;&#xA;target_package=arduino&#xD;&#xA;target_platform=avr&#xD;&#xA;runtime.hardware.path=C:\Users\pc\Desktop\Arduino-1.0.6\hardware&#xD;&#xA;originalid=mega2560&#xD;&#xA;vm.platform.root.path=C:\Program Files (x86)\Microsoft Visual Studio 11.0\Common7\IDE\Extensions\ti0bs03y.v40\Micro Platforms\arduino10x&#xD;&#xA;avrisp.name=AVR ISP&#xD;&#xA;avrisp.communication=serial&#xD;&#xA;avrisp.protocol=stk500v1&#xD;&#xA;avrispmkii.name=AVRISP mkII&#xD;&#xA;avrispmkii.communication=usb&#xD;&#xA;avrispmkii.protocol=stk500v2&#xD;&#xA;usbtinyisp.name=USBtinyISP&#xD;&#xA;usbtinyisp.protocol=usbtiny&#xD;&#xA;usbasp.name=USBasp&#xD;&#xA;usbasp.communication=usb&#xD;&#xA;usbasp.protocol=usbasp&#xD;&#xA;parallel.name=Parallel Programmer&#xD;&#xA;parallel.protocol=dapa&#xD;&#xA;parallel.force=true&#xD;&#xA;arduinoisp.name=Arduino as ISP&#xD;&#xA;arduinoisp.communication=serial&#xD;&#xA;arduinoisp.protocol=stk500v1&#xD;&#xA;arduinoisp.speed=19200&#xD;&#xA;runtime.vm.boardinfo.id=mega2560&#xD;&#xA;runtime.vm.boardinfo.name=mega2560&#xD;&#xA;runtime.vm.boardinfo.desc=Arduino Mega 2560 or Mega ADK&#xD;&#xA;runtime.vm.boardinfo.src_location=C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino&#xD;&#xA;ide.hint=For use with Arduino 0023 and 1.0.x versions&#xD;&#xA;ide.location.key=Arduino&#xD;&#xA;ide.location.ide.winreg=Arduino 1.0.x Application&#xD;&#xA;ide.location.sketchbook.winreg=Arduino 1.0.x Sketchbook&#xD;&#xA;ide.location.sketchbook.preferences=sketchbook.path&#xD;&#xA;ide.location.sketchbook.default=%MYDOCUMENTS%\arduino&#xD;&#xA;ide.location.preferences=%VM_APPDATA_ROAMING%\arduino\preferences.txt&#xD;&#xA;ide.default.package=arduino&#xD;&#xA;ide.default.platform=avr&#xD;&#xA;ide.multiplatform=true&#xD;&#xA;ide.includes=arduino.h&#xD;&#xA;ide.platformswithoutpackage=true&#xD;&#xA;ide.includes.fallback=wprogram.h&#xD;&#xA;ide.extension=ino&#xD;&#xA;ide.extension.fallback=pde&#xD;&#xA;ide.versionLTEQ=149&#xD;&#xA;ide.exe=arduino.exe&#xD;&#xA;ide.hosts=atmel&#xD;&#xA;ide.url=http://arduino.cc/en/Main/Software&#xD;&#xA;vm.debug=true&#xD;&#xA;software=ARDUINO&#xD;&#xA;ide.appid=arduino10x&#xD;&#xA;location.sketchbook=E:\VS-Workspace&#xD;&#xA;vm.core.include=arduino.h&#xD;&#xA;build.board=AVR_MEGA2560&#xD;&#xA;vm.boardsource.path=C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino&#xD;&#xA;runtime.platform.path=C:\Users\pc\Desktop\Arduino-1.0.6\hardware\arduino&#xD;&#xA;vm.platformname.name=avr&#xD;&#xA;build.arch=AVR&#xD;&#xA;" arduino.build.mcu="atmega2560" arduino.build.f_cpu="16000000L" arduino.build.core="arduino" arduino.upload.protocol="wiring" arduino.upload.speed="115200" arduino.upload.maximum_size="258048" visualmicro.application.name="arduino10x" visualmicro.package.name="arduino" visualmicro.platform.name="avr" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
